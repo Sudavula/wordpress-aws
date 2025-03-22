@@ -9,7 +9,7 @@ Resources:
       ImageId: ami-085ad6ae776d8f09c
       SecurityGroups:
         - !Ref InstanceSecurityGroup
-      KeyName: "sudhakar"
+      KeyName: "sudhakar"  # Hardcoded Key Name here
       UserData:
         Fn::Base64: !Sub |
           #!/bin/bash
@@ -59,25 +59,6 @@ Resources:
           FromPort: 80
           ToPort: 80
           CidrIp: 0.0.0.0/0
-
-  SecurityGroup:
-    Type: AWS::EC2::SecurityGroup
-    Properties:
-      GroupDescription: Security group allowing access on port 22 and 80 from anywhere
-      SecurityGroupIngress:
-        - IpProtocol: tcp
-          FromPort: 22
-          ToPort: 22
-          CidrIp: 0.0.0.0/0
-        - IpProtocol: tcp
-          FromPort: 80
-          ToPort: 80
-          CidrIp: 0.0.0.0/0
-
-Parameters:
-  KeyPair:
-    Description: 'Name of an existing EC2 KeyPair to allow SSH access to the instance'
-    Type: AWS::EC2::KeyPair::KeyName
 
 Outputs:
   WebsiteURL:
